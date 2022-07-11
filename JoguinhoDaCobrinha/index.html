@@ -6,11 +6,11 @@
         body {
             height: auto;
             background-size: cover!important;
-            background: url(terrenoSprite.png);
+            background: url(mato.jpg);
             background-attachment: fixed;
             background-position: center;
             text-align: center;
-            margin-top: 6%;
+            margin-top: 1%;
         }
 
         canvas {
@@ -20,11 +20,12 @@
 </head>
 <body>
  
-    <canvas id="stage" width="600" height="600"></canvas>
+    <canvas id="stage" width="540" height="540"></canvas>
 
     <a href="../hub.php">Voltar</a>
 
     <script type="text/javascript">
+
         
         window.onload = function(){
  
@@ -35,12 +36,14 @@
  
             const vel = 1;
  
-            var vx = vy = 0;
+            var vx = 0;
+            var vy = 1;
             var px = 10;
             var py = 15;
             var tp = 20;
-            var qp = 30;
+            var qp = 27;
             var ax= ay = 15;
+            var score = 0; 
  
             var trail = [];
             tail = 5;
@@ -74,23 +77,25 @@
                     {
                         vx = vy = 0;
                         tail = 5;
+                        alert("Você fez " + score + " pontos");
+                        atualizarPagina();
                     }
                 }
  
                 trail.push({x:px,y:py })
                 while (trail.length > tail) {
-                    trail.shift();
-                    
+                    trail.shift();    
                 }
  
                 if (ax==px && ay==py){
                     tail++;
+                    score++;
                     ax = Math.floor(Math.random()*qp);
                     ay = Math.floor(Math.random()*qp);
                     
                 }
- 
             }
+
  
             function keyPush(event){
  
@@ -115,8 +120,11 @@
                         
                         break;
                 }
- 
- 
+            }
+
+            function atualizarPagina()
+            {
+                window.location.reload();
             }
  
         }
